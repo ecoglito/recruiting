@@ -6,6 +6,7 @@ import GitHubProvider from "next-auth/providers/github";
 
 
 export const authOptions: NextAuthOptions = {
+  secret:process.env.SECRET,
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
