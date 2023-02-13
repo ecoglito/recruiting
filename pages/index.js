@@ -251,7 +251,7 @@ export default function Home({ companyListList, portfolioListCompanies, talentLi
             )}
           </AnimatePresence>
 
-          <div className={styles.homeSectionContainer}>
+          <div className={styles.firstHomeSection}>
             <h2 className={styles.homeSectionTitle}>Companies</h2>
             <Link href="/reading-list">
               <a className={styles.homeLinkButton}>View All</a>

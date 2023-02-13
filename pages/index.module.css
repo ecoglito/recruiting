@@ -195,6 +195,7 @@
     grid-template: repeat(3, 1fr) / repeat(2, 1fr);
   } 
 }
+
 .homeSectionContainer {
   display: flex;
   flex-direction: row;
@@ -202,6 +203,17 @@
   justify-content: space-between;
   padding-top: 3rem;
 }
+
+.firstHomeSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 3rem;
+}
+
+
+
 .homeSectionTitle {
   font-size: 1.25rem;
   line-height: 170%;
@@ -210,6 +222,7 @@
   /* margin-bottom: 0.75rem; */
   transition: color 0.25s ease;
 }
+
 .homeLinkButton {
   font-size: var(--font-s);
   color: var(--gray9);
@@ -285,4 +298,10 @@
   .homeFounderDiv {
     justify-content: left;
   }
+
+
+ .firstHomeSection {
+  padding-top: 0;
+ }
+
 }
