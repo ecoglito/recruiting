@@ -705,6 +705,7 @@
   .hiddenOnMobile {
     display: none;
   }
+
   .page {
     display: flex;
     flex-direction: column;
@@ -719,6 +720,8 @@
     overflow: auto;
     margin-left: 0rem;
     height: auto;
+    margin-right:0rem;
+    margin-top: 0rem;
   }
 
   .gridPage {
