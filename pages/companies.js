@@ -166,7 +166,7 @@ export default function CompanyList({ list }) {
         <title>{"Company List"}</title>
         <meta name="description" content={description} />
         <link rel="icon" href="icon.png" />{" "}
-        <meta property="og:image" content="https://www.sj.land/og/index.png" />
+        <meta property="og:image" content="https://imgur.com/a/al1McI2" />
       </Head>
      
 

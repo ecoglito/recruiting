@@ -26,7 +26,7 @@ export default function Store() {
         <title>{"SJ.Land Store"}</title>
         <meta name="description" content={description} />
         <link rel="icon" href="icon.png" />
-        <meta property="og:image" content="https://www.sj.land/og/index.png" />
+        <meta property="og:image" content="https://imgur.com/a/al1McI2" />
       </Head>
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-T2CWC86NTK"

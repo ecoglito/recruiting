@@ -180,7 +180,7 @@ export default function Home({ companyListList, portfolioListCompanies, talentLi
         <title>Alchemy Connect | Home</title>
         <meta name="description" content={description} />
         <link rel="icon" href="/icon.png" type="image/gif" />
-        <meta property="og:image" content="https://www.sj.land/og/index.png" />
+        <meta property="og:image" content="https://imgur.com/a/al1McI2" />
       </Head>{" "}
     
       
