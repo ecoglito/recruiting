@@ -152,8 +152,10 @@
     border-radius: 4px;
     padding-left: 10px;
     padding-top: 5px;
+    margin-top: 1rem;
     border: 1px solid var(--gray5);
     resize:vertical;
+    padding-bottom: 6rem;
   }
 
   .Select {
@@ -169,4 +171,16 @@
   .textArea:hover{
     background-color: var(--linkContainerBgHover);
 
+  }
+
+  .titleRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center ;
+    gap: 8px;
+  }
+
+  .large {
+    width: 18px;
+    height: 18px;
   }

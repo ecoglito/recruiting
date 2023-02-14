@@ -891,3 +891,12 @@
   /* animation: overlay-show 150ms cubic-bezier(0.16, 1, 0.3, 1) forwards; */
   z-index: 9;
 }
+
+
+.marginTop {
+  margin-top: 25px;
+}
+
+.marginTop button {
+  border: none;
+}
