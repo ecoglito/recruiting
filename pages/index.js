@@ -164,16 +164,9 @@ export default function Home({ companyListList, portfolioListCompanies, talentLi
   const description =
     "Alchemy Connect is the best way to find talent in web3. We help you find the right people for your team, and help you get hired by the best companies in the space.";
 
-  let firstName = "";
-    if (session) {
-      let name = session.user.name;
-      firstName = name.split(" ")[0];
-    }
-    else {
-      firstName = null;
-    }
-
-
+  let name = session.user.name;
+  let firstName = name.split(" ")[0];
+  
     return (
     <>
       <Head>
@@ -187,19 +180,7 @@ export default function Home({ companyListList, portfolioListCompanies, talentLi
       <main className={util.page} id="recentsPage">
         <div className={styles.homeColumn}>
           <h1 className={styles.homeGreetingTitle}>
-            {/* Welcome, <span className={util.gradient}>Paul.</span> */}
-          
-            {session ? 
-                (
-                  <>
-                   Welcome, {firstName}.
-                  </>
-            ): 
-            <>
-                Welcome to Alchemy Ventures.
-            </>
-              }
-        
+             Welcome, {firstName}.
           </h1>
           <span className={styles.tinyText}>
             A collection of the best web3 companies. {" "}
