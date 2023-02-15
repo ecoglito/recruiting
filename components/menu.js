@@ -26,7 +26,6 @@ export default function Menu() {
   }
 
   if (session) {
-
     matchedEmail = checkEmails(session.user.email);
   }
 

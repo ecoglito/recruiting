@@ -164,8 +164,11 @@ export default function Home({ companyListList, portfolioListCompanies, talentLi
   const description =
     "Alchemy Connect is the best way to find talent in web3. We help you find the right people for your team, and help you get hired by the best companies in the space.";
 
-  let name = session.user.name;
-  let firstName = name.split(" ")[0];
+  let firstName = "";
+  if (session) {
+    let name = session.user.name;
+    firstName = name.split(" ")[0];
+  }
   
     return (
     <>

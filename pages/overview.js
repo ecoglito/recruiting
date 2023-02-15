@@ -23,11 +23,30 @@ export default function Overview (list)  {
 
   const { data: session } = useSession();
 
+  function getCompanyNameFromEmail(email) {
+    let companyName = email.split("@")[1].split(".")[0];
+    companyName = companyName.toUpperCase();
+    return companyName;
+  }
+
+  let matchedEmail = false;
+
+  function checkEmails(userEmail) {
+    userEmail = getCompanyNameFromEmail(userEmail);
+    return (userEmail === "ALCHEMY") ? true : false;
+  }
+
+  if (session) {
+    matchedEmail = checkEmails(session.user.email);
+  }
+
+
   let portfolioChartLabels = {};
   let typeOfInvestmentLabels = {};
   let countOfInvestmentTypeLabels = {};
   let countOfInvestmentLocationLabels = {};
   let countOfInvestmentStageLabels = {};
+  
 
   function getCountOfInvestmentLocationLabelDetails(list) {
     let labels = {};
@@ -428,15 +447,17 @@ function getTypeOfInvestmentLabelDetails(list) {
 
     const description = "Overview of what we're building here at Alchemy Ventures.";
     return (
+      
         <>
+        
       <Head>
         <title>{"Alchemy Ventures Portfolio"}</title>
         <meta name="description" content={description} />
         <link rel="icon" href="icon.png" />{" "}
         <meta property="og:image" content="https://imgur.com/a/al1McI2" />
       </Head>
-
-      <main className={util.page} id="newslettersPage">
+      {matchedEmail ? (<>
+        <main className={util.page} id="newslettersPage">
         <div className = {styles.grid}>
         
             <div className= {styles.grid1}>
@@ -622,13 +643,13 @@ function getTypeOfInvestmentLabelDetails(list) {
                             <div className = {styles.chart}>
                                 {isBarChart ? <Bar data = {investmentStageData} options = {investmentTypeOptions} className = {styles.barChart}/> : <Pie data = {investmentLocationPieData} options = {portfolioChartOptions} className = {styles.pieChart} /> }
                             </div>
-                        </div>    
-
-                
-                
+                        </div>       
              </div>
         </div>
       </main>
+      
+      </>) : (<div className = {util.page}>You do not have access to this page</div>)}
+     
     </>
     )
 }
