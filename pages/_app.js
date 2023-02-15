@@ -7,7 +7,7 @@ import React, { useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SessionProvider } from "next-auth/react";
 
-function MyApp({ Component, pageProps, session }) {
+export default function MyApp({ Component, pageProps, session }) {
   return (
     <ThemeProvider attribute="class" value={{ dark: "dark-theme" }}>
       <Toaster
@@ -31,5 +31,3 @@ function MyApp({ Component, pageProps, session }) {
     
   );
 }
-
-export default MyApp;

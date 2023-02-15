@@ -30,7 +30,7 @@
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
     "next": "^12.2.5",
-    "next-auth": "^4.18.10",
+    "next-auth": "^4.7.0",
     "next-restore-scroll": "^1.2.1",
     "next-themes": "^0.1.1",
     "path": "^0.12.7",

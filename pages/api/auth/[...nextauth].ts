@@ -6,7 +6,9 @@ import GitHubProvider from "next-auth/providers/github";
 
 
 export const authOptions: NextAuthOptions = {
-  
+  session: {
+    strategy: 'jwt',
+  },
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
