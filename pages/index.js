@@ -146,21 +146,6 @@ export default function Home({ companyListList, portfolioListCompanies, talentLi
     return () => thisPage.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const hour = new Date().getHours();
-    var greeting =
-      hour > 17
-        ? "Good evening"
-        : hour > 11
-        ? "Good afternoon"
-        : hour > 4
-        ? "Good morning"
-        : hour > 2
-        ? "It's late, go to bed"
-        : "Hello";
-    setUserTime(greeting);
-  }, []);
-
   const description =
     "Alchemy Connect is the best way to find talent in web3. We help you find the right people for your team, and help you get hired by the best companies in the space.";
 

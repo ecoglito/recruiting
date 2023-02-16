@@ -136,6 +136,16 @@
     .grid1 {
         padding-top: 20px;
     }
+
+    .pieChart {
+        height: 100%;
+        width: 100%;
+    }
+
+    .barChart {
+        height: 100%;
+        width: 100%;
+    }
   }
   
 

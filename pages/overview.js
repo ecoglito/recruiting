@@ -5,9 +5,16 @@ const { Client } = require("@notionhq/client");
 import React, { useState, useEffect, useCallback } from 'react';
 import 'chart.js/auto'; 
 
+import { Chart as ChartJS, ArcElement, Tooltip as ChartToolTip, Legend } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
+
+
 import { Pie, Bar } from 'react-chartjs-2';
 import { useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
+
+
 
 import * as Tooltip from "@radix-ui/react-tooltip";
 
@@ -18,8 +25,9 @@ import Image from "next/image";
 
 
 
-
 export default function Overview (list)  {
+
+  ChartJS.register(ChartDataLabels);
 
   const { data: session } = useSession();
 
@@ -409,6 +417,10 @@ function getTypeOfInvestmentLabelDetails(list) {
                     boxWidth: 20
                 },
             },
+            datalabels: {
+             color: 'rgb(133, 133, 133)',
+            }
+  
         },
         layout: {
             padding: {
@@ -426,7 +438,7 @@ function getTypeOfInvestmentLabelDetails(list) {
             display: true,
             align: 'end',
             anchor: 'end',
-            color: 'black'
+            color: 'rgb(144, 144, 144)',
           },
           legend: {
             position: 'right',
