@@ -5,9 +5,7 @@ import util from "../styles/util.module.css";
 import Link from "next/link";
 import Tile from "../components/tiles/homeVersions/tile";
 import CompanyListTile from "../components/tiles/homeVersions/companyListTile";
-import TalentListTile from "../components/tiles/homeVersions/talentListTile";
-import GoodsTile from "../components/tiles/homeVersions/goodsTile";
-import StoreTile from "../components/tiles/homeVersions/storeTile";
+import InvestorListTile from "../components/tiles/homeVersions/investorListTile";
 import FounderRequestTile from "../components/tiles/homeVersions/founderRequestTile";
 import styles from "../pages/index.module.css";
 import toast, { Toaster } from "react-hot-toast";
@@ -19,7 +17,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 
 
-export default function Home({ companyListList, portfolioListCompanies, talentListList, portfolioListList }) {
+export default function Home({ companyListList, portfolioListCompanies, investorListList, talentListList, portfolioListList }) {
   //create masterlist objects with uuid and text and cta
 
   const { data: session } = useSession();
@@ -27,26 +25,25 @@ export default function Home({ companyListList, portfolioListCompanies, talentLi
 
   function getCompanyNameFromEmail(email) {
     let companyName = email.split("@")[1].split(".")[0];
-    companyName = companyName[0].toUpperCase() + companyName.slice(1);
-    return companyName.toUpperCase();
+    return companyName = companyName.toUpperCase();
   }
   
   function checkEmails(userEmail, portfolioListCompanies) {
-    userEmail = getCompanyNameFromEmail(userEmail);
-    return portfolioListCompanies.some(value => {
-      let companyEmail = getCompanyNameFromEmail(value.properties.Email.email);
-      return userEmail == companyEmail || userEmail == "ALCHEMY";
+    const userDomain = userEmail.split('@')[1];
+    return portfolioListCompanies.some(link => {
+      return userDomain === link.properties.Email.email.split('@')[1];
     });
   }
-
-
+  
+  
 
   let email;
   let isPortfolioCompany = false;
 
   if (session) {
     email = session.user.email;
-    isPortfolioCompany = checkEmails(email, portfolioListList);
+    isPortfolioCompany = checkEmails(email, portfolioListCompanies);
+    console.log(isPortfolioCompany);
   }
  
 
@@ -265,14 +262,38 @@ export default function Home({ companyListList, portfolioListCompanies, talentLi
                 />
 
                 <FounderRequestTile
-                  title = "Book office space"
-                  logo = "home"
+                  title = "Get AWS Credits"
+                  logo = "cloud"
                   portfolioList = {portfolioListCompanies}
                 />
                 </div>
             </div>
 
           ): null}
+
+          {isPortfolioCompany ? (
+            <>
+              <div className={styles.homeSectionContainer}>
+                <h2 className={styles.homeSectionTitle}>Investor Network</h2>
+              </div>
+              <div className = {styles.homeInvestorGrid}>
+              {investorListList.map((link) => (
+                <InvestorListTile
+                  key = {link.id}
+                  title={link.properties.Name.title[0].plain_text}
+                  fund={link.properties.Fund.multi_select}
+                  stage={link.properties.Stage.multi_select}
+                  url = {link.properties.URL.url}
+                  linkedin = {link.properties.Linkedin.url}
+                />
+            ))}
+
+              </div>
+             </> 
+                
+          ): null}
+
+
           
           
              
@@ -337,6 +358,21 @@ export async function getStaticProps() {
     page_size: 8,
   });
 
+  const investorListResponse = await alchemy_notion.databases.query({
+    database_id: process.env.NOTION_INVESTORLIST_ID,
+    filter: {
+      and: [
+        {
+          property: "Display",
+          checkbox: {
+            equals: true,
+          },
+        },
+      ],
+    },
+    page_size: 4,
+  });
+
   const portfolioListCompanies = await alchemy_notion.databases.query({
     database_id: process.env.NOTION_PORTFOLIOLIST_ID,
     sorts: [
@@ -399,6 +435,7 @@ export async function getStaticProps() {
       talentListList: talentListResponse.results,
       portfolioListList: portfolioListResponse.results,
       portfolioListCompanies: portfolioListCompanies.results,
+      investorListList: investorListResponse.results,
     },
     revalidate: 5,
   };

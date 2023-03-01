@@ -28,7 +28,6 @@
 }
 .upper {
   overflow-y: visible;
-  overflow-x: scroll;
   flex-shrink: 1;
   margin: -6px;
   padding: 6px;

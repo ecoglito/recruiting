@@ -19,8 +19,6 @@ import { useSession } from "next-auth/react";
 
 import * as Label from '@radix-ui/react-label';
 
-import axios from 'axios';
-
 
 
 export default function FounderRequestTile( {portfolioList, title, logo}) {
@@ -195,17 +193,24 @@ export default function FounderRequestTile( {portfolioList, title, logo}) {
                 <input type="hidden" id="email" name="email" value={session.user.email}></input>
             
                 <div className = {styles.fieldContainer}>
-                    <Label.Root className={styles.LabelRoot} htmlFor="company">
-                        Your Company
-                    </Label.Root>
-                    <select className={styles.Select} name = "company" id="company">
-                        {portfolioList.map((link, index) => (
-                            <option key={index} value={link.properties.Company.title[0].plain_text}>
-                            {link.properties.Company.title[0].plain_text}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                   
+                   {matchedEmail === 'no email found' || matchedEmail === null ? (
+                       <div>
+                           <Label.Root className={styles.LabelRoot} htmlFor="company">
+                           Your Company
+                           </Label.Root>
+                           <select className={styles.Select} name="company" id="company">
+                               {portfolioList.map((link, index) => (
+                               <option key={index} value={link.properties.Company.title[0].plain_text}>
+                                   {link.properties.Company.title[0].plain_text}
+                               </option>
+                               ))}
+                           </select>
+                       </div>
+                       ) : (
+                       <input type="hidden" id="company" value={getCompanyNameFromEmail(session.user.email)} />
+                       )}
+               </div>
 
                 <div className = {styles.fieldContainer}>
                     <Label.Root className={styles.LabelRoot} htmlFor="introName">
@@ -223,9 +228,10 @@ export default function FounderRequestTile( {portfolioList, title, logo}) {
     
                 <div className = {styles.fieldContainer}>
                     <Label.Root className={styles.LabelRoot} htmlFor="introReason">
-                        Reason for Intro
+                        Reason For Intro
                     </Label.Root>
-                    <input className={styles.Input} type="text" id="introReason" name="introReason" required />
+                    <textarea className={styles.textArea + " " + styles.textAreaNoMargin} id="introReason" name="introReason" required placeholder='Ex. "I really want to meet someone from a16z and pitch them!"'/>
+            
                 </div>
 
                 <div className = {util.marginTop}>
@@ -274,63 +280,23 @@ export default function FounderRequestTile( {portfolioList, title, logo}) {
                     ) : 
                     title === "Request an intro" ? (
                         <div>
-                        <DialogTitle className = {styles.dialogTitle}>Request an intro</DialogTitle>
-                         <RequestIntroForm />
+
+                            <div className = {styles.titleRow}>
+                        
+                                <DialogTitle className = {styles.dialogTitle}>Request An Intro</DialogTitle>
+                                <div className={styles.logoIcon + " " + styles.large}>
+                                    <Image className = {"iconInvert"} src={"/feather/" + "help" + ".svg"} height={66} width={66} alt="request" />
+                                    </div>
+                            </div>
+                            <RequestIntroForm />
                         </div>
 
                     ) :
-                    title === "Book office space" ? (
+                    title === "Get AWS Credits" ? (
                         <div>
-                        <DialogTitle className = {styles.dialogTitle}>Request an intro</DialogTitle>
-                        <form>
-                            <div className = {styles.fieldContainer}>
-                                <Label.Root className={styles.LabelRoot} htmlFor="firstName">
-                                    Your Name
-                                </Label.Root>
-                                <input className={styles.Input} type="text" id="firstName" placeholder="Nikil Viswanathan" />
-                            </div>
-    
-                            <div className = {styles.fieldContainer}>
-                                <Label.Root className={styles.LabelRoot} htmlFor="company">
-                                    Your Company
-                                </Label.Root>
-                                <select className = {styles.Select} id="company-select">
-                            {
-                                matchedEmail === 'no email found' || matchedEmail === null ?
-                                    portfolioList.map((link, index ) => (
-                                    <option key = {index} value={link.properties.Company.title[0].plain_text}>
-                                        {link.properties.Company.title[0].plain_text}
-                                    </option>
-                                    ))
-                                    : (
-                                    <option value = {matchedEmail}>
-                                        {matchedEmail}
-                                    </option>
-                                 
-                                        )
-                                }
-
-
-                                
-                                </select>
-    
-                            </div>
-    
-                            <div className = {styles.fieldContainer}>
-                                <Label.Root className={styles.LabelRoot} htmlFor="request">
-                                    Your Request
-                                </Label.Root>
-                                <textarea className = {styles.textArea} type id = "request" placeholder = "I want"></textarea>
-                        
-                            </div>
-    
-                            <div style={{ display: 'flex', marginTop: 25, justifyContent: 'flex-start' }}>
-                                <DialogClose asChild>
-                                    <a className={util.primaryButton + " " + util.primaryButtonContainer}>Submit Request</a>
-                                </DialogClose>
-                            </div>
-                        </form>
-                </div>
+                            {/* <DialogTitle className = {styles.dialogTitle}>Get AWS Credits</DialogTitle> */}
+                            <p>Coming soon...</p>
+                         </div>
                     ) : null }
                 </DialogContent>
             </DialogPortal>

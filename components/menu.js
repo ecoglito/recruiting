@@ -47,6 +47,7 @@ export default function Menu() {
           <NavLink svg="about" href="/about" label="About" shortcut="2" />
           <NavLink svg="users" href="/talent" label="Talent" shortcut="3" />
           <NavLink svg="projects" href="/companies" label="Portfolio" shortcut="4" />
+          <NavLink svg="money" href="/investors" label="Investors" shortcut="5" />
           
 
           {/* <NavLink

@@ -288,6 +288,20 @@
   overflow: hidden;
 }
 
+.homeInvestorGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
+  padding-left: 0rem;
+  justify-items: stretch;
+  overflow: hidden;
+  grid-auto-rows: 0;
+  align-items: start;
+
+}
+
 @media (max-width: 700px) {
   .homeFounderGrid {
     display: flex;
@@ -295,6 +309,15 @@
     gap: .75rem;
     justify-content: left;
   }
+
+  .homeInvestorGrid {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    justify-content: left;
+  }
+
+
   .homeFounderDiv {
     justify-content: left;
   }
