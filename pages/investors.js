@@ -1,8 +1,8 @@
-
 import util from "../styles/util.module.css";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Settings from "../components/settings";
+const { Client } = require("@notionhq/client");
 
 
 export default function Investors(list) {
@@ -84,14 +84,7 @@ export async function getStaticProps() {
     const notion = new Client({ auth: process.env.ALCHEMOTION_API_KEY });
     const response = await notion.databases.query({
       database_id: process.env.NOTION_INVESTORLIST_ID,
-      sorts: [
-        {
-          property: "Created",
-          direction: "descending",
-        },
-      ],
     });
-  
     return {
       props: {
         list: response.results,
