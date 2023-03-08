@@ -2,17 +2,18 @@ import util from "../styles/util.module.css";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Settings from "../components/settings";
+import InvestorTile from "../components/tiles/investorTile";
 const { Client } = require("@notionhq/client");
 
 
-export default function Investors(list) {
+export default function Investors({list}) {
 
     const router = useRouter();
     const [filter, setFilter] = React.useState(null);
     const [fav, setFav] = React.useState(null);
     const [currentList, setCurrentList] = React.useState(null);
 
-    const filters = ["Engineering", "Product", "Growth", "Design"];
+    const filters = ["Infrastructure", "Consumer", "SaaS", "DeFi", "NFTs"];
 
     function removeFilter() {
         setFilter("all");
@@ -20,6 +21,114 @@ export default function Investors(list) {
       function handleTagChange(e) {
         setFilter(e.target.innerHTML);
       }
+
+    //set initial states when url has queries
+  useEffect(() => {
+    if (router.query.filter && router.query.filter !== filter) {
+      setFilter(router.query.filter);
+    }
+  }, [router.query.filter]);
+  useEffect(() => {
+    if (router.query.favonly) {
+      if (fav !== true) {
+        setFav(true);
+      }
+    } else {
+      setFav(false);
+    }
+  }, [router.query.favonly]);
+  //set initial state when url has no queries
+  useEffect(() => {
+    //preset filter when there's no filter in url, but data stored in local storage
+    if (router && router.query.filter == null) {
+      let filterSelected = sessionStorage.getItem("investor-filter");
+      if (filterSelected && filterSelected !== filter) {
+        setFilter(filterSelected);
+      } else {
+        setFilter("all");
+      }
+    }
+    //set fav when no filter in url, but in the same session
+    if (router && router.query.favonly == null) {
+      let favSelected = sessionStorage.getItem("investor-fav");
+      if (favSelected == "true") {
+        setFav(true);
+      } else {
+        setFav(false);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (filter && fav !== null) {
+      //cycle through scenarios and compose lists
+      let tempList = [];
+      if (filter !== "all" && !fav) {
+        router.push({
+          query: { filter: filter },
+        });
+        sessionStorage.setItem("investor-filter", filter);
+        sessionStorage.setItem("investor-fav", false);
+        for (var i = 0; i < list.length; i++) {
+          for (
+            var j = 0;
+            j < list[i].properties.Tags.multi_select.length;
+            j++
+          ) {
+            if (
+              list[i].properties.Tags.multi_select[j].name ==
+              filter.replace("&amp;", "&")
+            ) {
+              tempList.push(list[i]);
+            }
+          }
+        }
+      } else if (filter !== "all" && fav) {
+        router.push({
+          query: { filter: filter, favonly: fav },
+        });
+        sessionStorage.setItem("investor-filter", filter);
+        sessionStorage.setItem("investor-fav", true);
+        for (var i = 0; i < list.length; i++) {
+          for (
+            var j = 0;
+            j < list[i].properties.Tags.multi_select.length;
+            j++
+          ) {
+            if (
+              list[i].properties.Tags.multi_select[j].name ==
+                filter.replace("&amp;", "&") &&
+              list[i].properties.Fav.checkbox == fav
+            ) {
+              tempList.push(list[i]);
+            }
+          }
+        }
+      } else if (filter == "all" && fav) {
+        router.push({
+          query: { favonly: fav },
+        });
+        sessionStorage.setItem("investor-filter", "all");
+        sessionStorage.setItem("investor-fav", true);
+        for (var i = 0; i < list.length; i++) {
+          if (list[i].properties.Fav.checkbox == fav) {
+            tempList.push(list[i]);
+          }
+        }
+      } else if (filter == "all" && !fav) {
+        router.push({
+          query: {},
+        });
+        sessionStorage.setItem("investor-filter", "all");
+        sessionStorage.setItem("investor-fav", false);
+        for (var i = 0; i < list.length; i++) {
+          tempList.push(list[i]);
+        }
+      }
+      setCurrentList(tempList);
+    }
+  }, [filter, fav]);
+
 
 
     return (
@@ -69,8 +178,28 @@ export default function Investors(list) {
                   </button>
                 ))}
               </div>
-              <Settings status={fav} updateCheckbox={setFav} />
+
             </div>
+
+            {currentList ? (
+              currentList.length == 0 ? (
+                <div className={util.emptyState}>
+                  Nothing found. Please try adjusting the filter.
+                </div>
+              ) : (
+                currentList.map((link) => (
+                  <InvestorTile
+                    key={link.id}
+                    title={link.properties.Name.title[0].plain_text}
+                    url={link.properties.URL.url}
+                    fund={link.properties.Fund.multi_select}
+                  />
+                ))
+              )
+            ) : (
+              <p>loading...</p>
+            )}
+
             </ul>
 
 

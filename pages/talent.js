@@ -155,7 +155,7 @@ export default function Talent({ list }) {
   return (
     <>
       <Head>
-        <title>{"SJ's Talent List"}</title>
+        <title>{"Talent List"}</title>
         <meta name="description" content={description} />
         <link rel="icon" href="icon.png" />{" "}
         <meta property="og:image" content="https://imgur.com/a/al1McI2" />

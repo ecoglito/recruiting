@@ -11,6 +11,7 @@
     transition: all 0.075s ease-in;
     overflow: hidden;
   }
+  
   .tileTitle {
     font-size: var(--font-l);
     font-weight: 390;

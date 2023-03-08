@@ -74,6 +74,7 @@ export default function InvestorListTile({title, fund, stage, url, linkedin}) {
                 
             </div>
             </DialogTrigger>
+
             <DialogPortal>
                 <DialogOverlay className={styles.overlay} />
                 <DialogContent className={styles.content} onOpenAutoFocus={(event) => event.preventDefault()}>
@@ -82,7 +83,6 @@ export default function InvestorListTile({title, fund, stage, url, linkedin}) {
                         <p> hi</p>
                     </div>
                 </div>
-               
                 </DialogContent>
             </DialogPortal>
             </DialogRoot>
