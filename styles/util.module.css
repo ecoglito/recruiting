@@ -378,6 +378,7 @@
   margin: 1.5rem 0rem -2rem;
   justify-content: space-between;
   gap: 1rem;
+  
 }
 @media (max-width: 700px) {
   .inlineCTA {
@@ -900,3 +901,45 @@
 .marginTop button {
   border: none;
 }
+
+.perksSubHeader {
+  color: var(--gray11);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.cardContainer {
+  background-color: var(--linkContainerBg);
+  border: 1px solid var(--linkContainerBorder);
+  border-radius: 8px;
+  width: 100%;
+  margin: 0.5rem 0rem 0rem;
+  transition: background-color 0.15s ease, border 0.15s ease;
+  overflow: hidden;
+}
+
+.card {
+    padding: 1rem 1rem 1rem 1.25rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+
+.card:hover {
+  background-color: var(--linkContainerBgHover);
+  cursor: pointer;
+}
+.cardContainer:hover {
+  border: 1px solid var(--linkContainerBorderHover);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+}
+

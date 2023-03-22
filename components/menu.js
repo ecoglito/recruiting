@@ -70,10 +70,16 @@ export default function Menu() {
           /> */}
           <p className={styles.divider}>Resources</p>
           <NavLink
+            svg="perks"
+            href="/perks"
+            label="Founder Perks"
+            shortcut="6"
+          />
+          <NavLink
             svg="reading"
             href="/reading-list"
             label="Building web3 teams"
-            shortcut="5"
+            shortcut="7"
           />
           {/* <NavLink
             svg="shopping-bag"
@@ -86,13 +92,13 @@ export default function Menu() {
             svg="newsletters"
             href="/newsletter"
             label="Newsletter"
-            shortcut="6"
+            shortcut="8"
           />
           <NavLink
             svg="podcasts"
             href="/podcast"
             label="Podcast"
-            shortcut="7"
+            shortcut="9"
           />
           <p className={styles.divider}>Reach out</p>
           <Contact svg="chat" label="Contact" shortcut="/" />

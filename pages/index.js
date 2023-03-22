@@ -31,7 +31,7 @@ export default function Home({ companyListList, portfolioListCompanies, investor
   function checkEmails(userEmail, portfolioListCompanies) {
     const userDomain = userEmail.split('@')[1];
     return portfolioListCompanies.some(link => {
-      return userDomain === link.properties.Email.email.split('@')[1];
+      return userDomain === link.properties.Email.email.split('@')[1] || userDomain === 'alchemy.com';
     });
   }
   
@@ -219,7 +219,7 @@ export default function Home({ companyListList, portfolioListCompanies, investor
 
           <div className={styles.firstHomeSection}>
             <h2 className={styles.homeSectionTitle}>Companies</h2>
-            <Link href="/reading-list">
+            <Link href="/companies">
               <a className={styles.homeLinkButton}>View All</a>
             </Link>
           </div>{" "}
@@ -243,7 +243,7 @@ export default function Home({ companyListList, portfolioListCompanies, investor
             <div>
               <div className={styles.homeSectionContainer}>
                 <h2 className={styles.homeSectionTitle}>Founder Perks</h2>
-                <Link href="/reading-list">
+                <Link href="/perks">
                   <a className={styles.homeLinkButton}>View All</a>
                 </Link>
               </div>
@@ -251,21 +251,24 @@ export default function Home({ companyListList, portfolioListCompanies, investor
               <div className = {styles.homeFounderGrid}>
                 <FounderRequestTile
                   title = "Reach out to us"
+                  type = "internal"
                   logo = "intro"
                   portfolioList = {portfolioListCompanies}
                 />
 
                 <FounderRequestTile
                   title = "Request an intro"
+                  type = "internal"
                   logo = "help"
                   portfolioList = {portfolioListCompanies}
                 />
 
                 <FounderRequestTile
-                  title = "Get AWS Credits"
-                  logo = "cloud"
-                  portfolioList = {portfolioListCompanies}
-                />
+                            title = "AWS Credits"
+                            logo = "amazon.com"
+                            type = "engineering"
+                            portfolioList = {portfolioListCompanies}
+                  />
                 </div>
             </div>
 
@@ -275,7 +278,11 @@ export default function Home({ companyListList, portfolioListCompanies, investor
             <>
               <div className={styles.homeSectionContainer}>
                 <h2 className={styles.homeSectionTitle}>Investor Network</h2>
+                <Link href="/investors">
+                  <a className={styles.homeLinkButton}>View All</a>
+                </Link>
               </div>
+              
               <div className = {styles.homeInvestorGrid}>
               {investorListList.map((link) => (
                 <InvestorListTile

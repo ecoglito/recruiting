@@ -21,7 +21,7 @@ import * as Label from '@radix-ui/react-label';
 
 
 
-export default function FounderRequestTile( {portfolioList, title, logo}) {
+export default function FounderRequestTile( {portfolioList, title, logo, type}) {
 
     const { data: session } = useSession();
    
@@ -37,9 +37,13 @@ export default function FounderRequestTile( {portfolioList, title, logo}) {
       function getMatchedEmail(email, portfolioList) {
         const companyName = getCompanyNameFromEmail(email);
         let matchedEmail = null;
+        console.log(companyName);
         portfolioList.map(value => {
           if (value.properties.Company.title[0].plain_text.toUpperCase() === companyName.toUpperCase()) {
             matchedEmail = companyName;
+          }
+          else if (companyName === 'Alchemy') {
+            matchedEmail = 'Alchemy';
           }
         }).find(e => e) || 'no email found';
     
@@ -108,26 +112,33 @@ export default function FounderRequestTile( {portfolioList, title, logo}) {
                 <input type="hidden" id="email" name="email" value={session.user.email}/>
         
             
-                <div className = {styles.fieldContainer}>
-                   
+                <div className={styles.fieldContainer}>
                     {matchedEmail === 'no email found' || matchedEmail === null ? (
                         <div>
-                            <Label.Root className={styles.LabelRoot} htmlFor="company">
+                        <Label.Root className={styles.LabelRoot} htmlFor="company">
                             Your Company
-                            </Label.Root>
-                            <select className={styles.Select} name="company" id="company">
-                                {portfolioList.map((link, index) => (
-                                <option key={index} value={link.properties.Company.title[0].plain_text}>
-                                    {link.properties.Company.title[0].plain_text}
-                                </option>
-                                ))}
-                            </select>
+                        </Label.Root>
+                        <select className={styles.Select} name="company" id="company">
+                            {portfolioList.map((link, index) => (
+                            <option
+                                key={index}
+                                value={link.properties.Company.title[0].plain_text}
+                            >
+                                {link.properties.Company.title[0].plain_text}
+                            </option>
+                            ))}
+                        </select>
                         </div>
-                        ) : (
-                        <input type="hidden" id="company" value={getCompanyNameFromEmail(session.user.email)} />
-                        )}
+                    ) : matchedEmail === 'Alchemy' ? (
+                        <input type="hidden" id="company" value="Alchemy" />
+                    ) : (
+                        <input
+                        type="hidden"
+                        id="company"
+                        value={getCompanyNameFromEmail(session.user.email)}
+                        />
+                    )}
                 </div>
-
                 <div className={styles.fieldContainer}>
                 <textarea className={styles.textArea} id="request" name="request" required placeholder='Ex. "I want to get product feedback from someone on your design team."'/>
                 </div>
@@ -242,18 +253,74 @@ export default function FounderRequestTile( {portfolioList, title, logo}) {
         )
     }
 
-
-
-
     return (
+       
         <div>
+             { type === "internal" ? ( 
+            <>
+                <DialogRoot>
+                    <DialogTrigger asChild>
+                    <div className = {styles.homeFounderDiv}>
+                        <div className={styles.logoIcon}>
+                            <Image
+                                className = {"iconInvert"}
+                                src={"/feather/" + logo + ".svg"}
+                                height={66}
+                                width={66}
+                                alt="request"
+                            />
+                        </div>
+                            <p>{title}</p>
+                    </div>
+                    </DialogTrigger>
+                    <DialogPortal>
+                        <DialogOverlay className={styles.overlay} />
+                        <DialogContent className = {styles.content}>
+                            {title === "Reach out to us" ? (
+                            <>
+                                <div className = {styles.titleRow}>
+                            
+                                    <DialogTitle className = {styles.dialogTitle}>Make A Request</DialogTitle>
+                                    <div className={styles.logoIcon + " " + styles.large}>
+                                        <Image className = {"iconInvert"} src={"/feather/" + "wizard" + ".svg"} height={66} width={66} alt="request" />
+                                        </div>
+                                </div>
+                                    <RequestForm />
+                            </>
+                            
+                            ) : 
+                            title === "Request an intro" ? (
+                                <div>
+
+                                    <div className = {styles.titleRow}>
+                                
+                                        <DialogTitle className = {styles.dialogTitle}>Request An Intro</DialogTitle>
+                                        <div className={styles.logoIcon + " " + styles.large}>
+                                            <Image className = {"iconInvert"} src={"/feather/" + "help" + ".svg"} height={66} width={66} alt="request" />
+                                            </div>
+                                    </div>
+                                    <RequestIntroForm />
+                                </div>
+
+                            ) :  ( null )}
+                        </DialogContent>
+                    </DialogPortal>
+                </DialogRoot>
+            </>
+            ) : type === "engineering" ? 
+            ( 
+            <> 
             <DialogRoot>
                 <DialogTrigger asChild>
                 <div className = {styles.homeFounderDiv}>
                     <div className={styles.logoIcon}>
                         <Image
-                            className = {"iconInvert"}
-                            src={"/feather/" + logo + ".svg"}
+                            
+                            src={
+                                "https://s2.googleusercontent.com/s2/favicons?domain_url="
+                                + "amazon.com" +
+                                "&sz=64"
+                            }
                             height={66}
                             width={66}
                             alt="request"
@@ -265,7 +332,7 @@ export default function FounderRequestTile( {portfolioList, title, logo}) {
             <DialogPortal>
                 <DialogOverlay className={styles.overlay} />
                 <DialogContent className = {styles.content}>
-                    {title === "Reach out to us" ? (
+                    {title === "Get AWS Credits" ? (
                     <>
                         <div className = {styles.titleRow}>
                     
@@ -291,16 +358,15 @@ export default function FounderRequestTile( {portfolioList, title, logo}) {
                             <RequestIntroForm />
                         </div>
 
-                    ) :
-                    title === "Get AWS Credits" ? (
-                        <div>
-                            {/* <DialogTitle className = {styles.dialogTitle}>Get AWS Credits</DialogTitle> */}
-                            <p>Coming soon...</p>
-                         </div>
-                    ) : null }
+                    ) :  ( null )}
                 </DialogContent>
             </DialogPortal>
             </DialogRoot>
+            
+            </>
+            ) 
+            : null}
+           
         </div>
     )
 }
