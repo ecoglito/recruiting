@@ -315,7 +315,7 @@ export default function FounderRequestTile( {portfolioList, title, logo, type}) 
                 <div className = {styles.homeFounderDiv}>
                     <div className={styles.logoIcon}>
                         <Image
-                            
+                        
                             src={
                                 "https://s2.googleusercontent.com/s2/favicons?domain_url="
                                 + "amazon.com" +
@@ -332,33 +332,28 @@ export default function FounderRequestTile( {portfolioList, title, logo, type}) 
             <DialogPortal>
                 <DialogOverlay className={styles.overlay} />
                 <DialogContent className = {styles.content}>
-                    {title === "Get AWS Credits" ? (
-                    <>
+                    <div className = {styles.stack}>
                         <div className = {styles.titleRow}>
-                    
-                            <DialogTitle className = {styles.dialogTitle}>Make A Request</DialogTitle>
-                            <div className={styles.logoIcon + " " + styles.large}>
-                                 <Image className = {"iconInvert"} src={"/feather/" + "wizard" + ".svg"} height={66} width={66} alt="request" />
-                                </div>
+                            <DialogTitle className = {styles.dialogTitle}>Get AWS Credits!</DialogTitle>
                         </div>
-                            <RequestForm />
-                    </>
-                      
-                    ) : 
-                    title === "Request an intro" ? (
-                        <div>
-
-                            <div className = {styles.titleRow}>
-                        
-                                <DialogTitle className = {styles.dialogTitle}>Request An Intro</DialogTitle>
-                                <div className={styles.logoIcon + " " + styles.large}>
-                                    <Image className = {"iconInvert"} src={"/feather/" + "help" + ".svg"} height={66} width={66} alt="request" />
-                                    </div>
-                            </div>
-                            <RequestIntroForm />
-                        </div>
-
-                    ) :  ( null )}
+                        <ul className = {styles.list}>
+                            <li className = {styles.listItem}>Sign up for <strong><a className = {styles.link} href = "https://console.aws.amazon.com/activate/?#/apply">AWS Activate</a></strong></li>
+                            <li className = {styles.listItem}>Select <strong>Activate Portfolio</strong> and enter our case sensitive Organization ID <strong>1kV3j</strong> or <strong>1kV3i</strong> to authenticate your application. This Organization ID affiliates your startup with us and helps you receive maximum benefits. </li>
+                            <li className = {styles.listeItem}>Package 1 <strong>(1kV3j)</strong>:
+                                <ul>
+                                    <li>$25k over 24 months or $100k over 12 months in service credits</li>
+                                    <li>$10k over 12 months of Business Support credits</li>
+                                </ul>
+                            </li>
+                            <li className = {styles.listeItem}>Package 2 <strong>(1kV3i)</strong>:
+                                <ul>
+                                    <li>$25k over 24 months in service credits</li>
+                                    <li>$5k over 12 months of Business Support credits</li>
+                                </ul>
+                            </li>
+                            <li className = {styles.listItem}>Complete the application form in full and submit–it only takes a few minutes to complete. Please ensure the information you provide matches the information contained within your AWS account (e.g. your company name and email address).</li>
+                       </ul>
+                    </div>
                 </DialogContent>
             </DialogPortal>
             </DialogRoot>

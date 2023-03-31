@@ -188,3 +188,15 @@
     width: 18px;
     height: 18px;
   }
+
+  .list {
+    gap: 8px;
+  }
+
+  .listItem {
+    margin: 10px 0;
+  }
+
+  .link:hover {
+    text-decoration: underline;
+  }

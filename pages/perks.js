@@ -57,7 +57,6 @@ export default function Investors({list}) {
                             type = "engineering"
                             portfolioList = {list}
                         />
-
                     
                     </div>
 
