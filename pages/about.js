@@ -111,7 +111,7 @@ export default function About({ list }) {
           <h5 className={util.subtitle}>Your web3 social network. </h5>
             <div className={util.inset}>
                 <p className={util.description}>
-                Welcome to Alchemy Connect. We created this for our venture portfolio companies to interact with each other and top investors in the space. See who we've invested in, reach out to them, advertise your product, and pitch to investors -- all in one place.
+                Welcome to Alchemy Connect. We created this for our venture portfolio companies to interact with each other and top investors in the space. See who we have invested in, reach out to them, advertise your product, and pitch to investors -- all in one place.
                 </p>
                 <br></br>
               
@@ -123,7 +123,7 @@ export default function About({ list }) {
                 <br></br>
 
                 <p className = {util.description}>
-                If you have any feedback or comments to share, please text us at <strong>650-796-6455</strong>, message us on telegram <strong>@enzocog</strong>, or email us at <strong>ventures@alchemy.com</strong> and we'll make sure to respond as soon as possible.
+                If you have any feedback or comments to share, please text us at <strong>650-796-6455</strong>, message us on telegram <strong>@enzocog</strong>, or email us at <strong>ventures@alchemy.com</strong> and we will make sure to respond as soon as possible.
                 </p>
             </div>
            
