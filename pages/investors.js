@@ -193,6 +193,8 @@ export default function Investors({list}) {
                     title={link.properties.Name.title[0].plain_text}
                     url={link.properties.URL.url}
                     fund={link.properties.Fund.multi_select}
+                    bridge = {link.properties.Bridge.url}
+                    about = {link.properties.About.rich_text}
                   />
                 ))
               )

@@ -15,7 +15,7 @@ import {
 } from "@radix-ui/react-dialog";
 
 
-export default function CompanyListTile({ title, url, about, founder, founderLinkedin, email, raising, tags }) {
+export default function CompanyListTile({ title, url, about, founder, founderLinkedin, email, raising, tags, bridge }) {
 
   let displayUrl = url
     .replace("https://www.", "")
@@ -127,7 +127,7 @@ export default function CompanyListTile({ title, url, about, founder, founderLin
                         ))}
                         </p>
                     </div>
-                    <div className = {overlay.row + " " + overlay.subrow}>
+                    {/* <div className = {overlay.row + " " + overlay.subrow}>
                         <div className = {overlay.contentWrapper}>
                             <h4 className = {overlay.subheader}>Latest Fundraising Round:</h4>
                             <p className = {overlay.description}>
@@ -162,7 +162,7 @@ export default function CompanyListTile({ title, url, about, founder, founderLin
                         </div>
 
 
-                    </div>
+                    </div> */}
 
                     <div className = {overlay.contentWrapper}>
                         <h4 className = {overlay.subheader}>Founders:</h4>
@@ -180,18 +180,20 @@ export default function CompanyListTile({ title, url, about, founder, founderLin
                         </div>
                     </div>
                     
-                    <div className = {overlay.contentWrapper}>
-                        <h4 className = {overlay.subheader}>Reach Out:</h4>
-                        <a
-                            className={util.primaryButton + " " + util.primaryButtonContainer}
-                            href={url}
-                            target="_blank"
-                            rel="noopener noreferrer" >     
-                        <span className = {overlay.requestText}>Request An Intro</span>
-                        <span className={overlay.externalIcon}>↗</span>
-                        </a>
-                       
-                    </div>
+                    {bridge ? (
+                         <div className = {styles.contentWrapper}>
+                         <h4 className = {styles.subheader}>Reach Out:</h4>
+                         <a
+                             className={util.primaryButton + " " + util.primaryButtonContainer}
+                             href={bridge}
+                             target="_blank"
+                             rel="noopener noreferrer" >     
+                         <span className = {styles.requestText}>Request An Intro</span>
+                         <span className={styles.externalIcon}>↗</span>
+                         </a>
+                        
+                     </div>
+                    ) : null}
                 </div>
                 </div>
             </DialogContent>

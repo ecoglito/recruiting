@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "./investorListTile.module.css";
 import util from "../../../styles/util.module.css";
 import Image from "next/image";
+import  InvestorOverlay  from "../overlays/investorOverlay";
 import {
     Root as DialogRoot,
     Trigger as DialogTrigger,
@@ -14,7 +15,7 @@ import {
   } from "@radix-ui/react-dialog";
 
 
-export default function InvestorListTile({title, fund, stage, url, linkedin}) {
+export default function InvestorListTile({ title, fund, stage, url, about, linkedin, bridge }) {
 
     const Stage = () => {
         return (
@@ -78,11 +79,7 @@ export default function InvestorListTile({title, fund, stage, url, linkedin}) {
             <DialogPortal>
                 <DialogOverlay className={styles.overlay} />
                 <DialogContent className={styles.content} onOpenAutoFocus={(event) => event.preventDefault()}>
-                <div className = {styles.verticalContainer}>
-                    <div className = {styles.row}>
-                        <p> hi</p>
-                    </div>
-                </div>
+                  <InvestorOverlay fund = {fund}  title={title} url={url} about={about} linkedin={linkedin} bridge={bridge} />
                 </DialogContent>
             </DialogPortal>
             </DialogRoot>

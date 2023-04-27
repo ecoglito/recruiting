@@ -16,7 +16,7 @@ import {
 } from "@radix-ui/react-dialog";
 
 
-export default function CompanyListTile({ title, url, date, email, founder, fav, tags, about, founderLinkedin }) {
+export default function CompanyListTile({ title, url, date, email, founder, fav, tags, about, founderLinkedin, bridge }) {
   let displayUrl = url
     .replace("https://www.", "")
     .replace("http://www.", "")
@@ -43,7 +43,7 @@ export default function CompanyListTile({ title, url, date, email, founder, fav,
  
   return (
     <div>
-    <Overlay url = {url} about = {about} founder = {founder} email = {email} tags = {tags} title = {title} founderLinkedin = {founderLinkedin}/>
+    <Overlay url = {url} about = {about} founder = {founder} email = {email} tags = {tags} title = {title} founderLinkedin = {founderLinkedin} bridge = {bridge}/>
     </div>
      
 

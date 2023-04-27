@@ -1,6 +1,7 @@
 import Head from "next/head";
 import util from "../styles/util.module.css";
 import CompanyListTile from "../components/tiles/companyListTile";
+import Overlay from "../components/tiles/homeVersions/overlay";
 const { Client } = require("@notionhq/client");
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
@@ -224,6 +225,7 @@ export default function CompanyList({ list }) {
                     founderLinkedin = {link.properties.FounderLinkedin.url}
                     email = {link.properties.Email.email}
                     raising = {link.properties.Raising.checkbox}
+                    bridge = {link.properties.Bridge.url}
                   />
                 ))
               )

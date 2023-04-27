@@ -234,6 +234,7 @@ export default function Home({ companyListList, portfolioListCompanies, investor
                 founder = {link.properties.Founder.rich_text}
                 founderLinkedin = {link.properties.FounderLinkedin.url}
                 email = {link.properties.Email.email}
+                bridge = {link.properties.Bridge.url}
               />
             ))}
           </ul>
@@ -292,6 +293,8 @@ export default function Home({ companyListList, portfolioListCompanies, investor
                   stage={link.properties.Stage.multi_select}
                   url = {link.properties.URL.url}
                   linkedin = {link.properties.Linkedin.url}
+                  bridge = {link.properties.Bridge.url}
+                  about = {link.properties.About.rich_text}
                 />
             ))}
 
@@ -305,7 +308,7 @@ export default function Home({ companyListList, portfolioListCompanies, investor
           
              
 
-          <div className={styles.homeSectionContainer}>
+          {/* <div className={styles.homeSectionContainer}>
             <h2 className={styles.homeSectionTitle}>Talent</h2>
             <Link href="/reading-list">
               <a className={styles.homeLinkButton}>View All</a>
@@ -325,7 +328,7 @@ export default function Home({ companyListList, portfolioListCompanies, investor
                 tags={item.properties.Tags.multi_select}
               />
             ))}
-          </ul>
+          </ul> */}
 
           
         </div>

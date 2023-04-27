@@ -1,5 +1,5 @@
 
-  .homeInvestorDiv {
+.homeInvestorDiv {
     border-radius: 8px;
     display: flex;
     flex-direction: row;
@@ -120,6 +120,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
   }
 
   .subheader{

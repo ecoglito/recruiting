@@ -108,25 +108,29 @@ export default function About({ list }) {
       <main className={util.page} id="aboutPage">
         <div className={util.pageColumn}>
           <h1 className={util.header}>Introducing Alchemy Connect</h1>
-          <h5 className={util.subtitle}>The a-list of decentralized networks.</h5>
+          <h5 className={util.subtitle}>Your web3 social network. </h5>
             <div className={util.inset}>
                 <p className={util.description}>
-                Welcome to Alchemy Connect. the premier destination for finding the best talent and companies in the web3 ecosystem. As experts in the field of blockchain and decentralized technology, we understand the challenges that both job seekers and companies face in navigating this rapidly evolving industry.
+                Welcome to Alchemy Connect. We created this for our venture portfolio companies to interact with each other and top investors in the space. See who we've invested in, reach out to them, advertise your product, and pitch to investors -- all in one place.
                 </p>
                 <br></br>
-                <p className={util.description}>
-                    Thats why weve created a platform that carefully curates and connects top talent with leading companies in the web3 space. Our team of experts personally reviews and selects only the most qualified candidates and reputable businesses to be featured on our site.
-                </p>
-                <br></br>
+              
+        
                 <p className = {util.description}>
-                We believe that by providing a trusted resource for finding the best professionals and opportunities in the web3 industry, we can contribute to the mass adoption of blockchain technology and bring a billion people into the decentralized world.
+                In the future, we plan to expand this platform to provide you a curated list of the best products, talent, and investors in the space. We encourage active collaboration, feedback, and participation in Alchemy Connect in order to make it as succesful as possible.
+                </p>
+
+                <br></br>
+
+                <p className = {util.description}>
+                If you have any feedback or comments to share, please text us at <strong>650-796-6455</strong>, message us on telegram <strong>@enzocog</strong>, or email us at <strong>ventures@alchemy.com</strong> and we'll make sure to respond as soon as possible.
                 </p>
             </div>
            
-           <p className={util.divider}></p>
+           {/* <p className={util.divider}></p>
             <h1 className={util.header}>FAQ</h1>
             <h5 className={util.subtitle}>The answer to your question lies below.</h5>
-            <FAQ />
+            <FAQ /> */}
             
         </div>
       </main>

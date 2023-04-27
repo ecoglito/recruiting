@@ -68,13 +68,18 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: clamp(300px, 30vw, 1080px);
+    width: clamp(300px, 50vw, 1080px);
     align-content: stretch;
     justify-content: space-between;
     align-items: stretch;
     z-index: 10;
     padding: 1.5rem;
   }
+
+  
+
+
+
 
   
   .dialogTitle {

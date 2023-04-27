@@ -177,7 +177,7 @@ export default function Talent({ list }) {
       <main className={util.page} id="talentPage">
         <div className={util.pageColumn}>
           <h1 className={util.header}>Talent</h1>
-          <p className={util.description}>{description}</p>
+          {/* <p className={util.description}>{description}</p>
 
           <div className={util.inlineCTA}>
             <div>
@@ -196,9 +196,15 @@ export default function Talent({ list }) {
             >
               {"Sign me up!"}
             </a>
-          </div>
-
+          </div> */}
+          
           <ul className={util.list}>
+            <h3>
+              Coming soon!
+            </h3>
+          </ul>
+
+          {/* <ul className={util.list}>
             <div className={util.tabBar}>
               <div className={util.tabRow}>
                 <button
@@ -260,7 +266,7 @@ export default function Talent({ list }) {
             ) : (
               <p>loading...</p>
             )}
-          </ul>
+          </ul> */}
         </div>
       </main>
     </>

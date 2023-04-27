@@ -13,7 +13,7 @@ import styles from "./overlay.module.css";
 import Image from "next/image";
 import util from "../../../styles/util.module.css"
   
-export default function Overlay({title, url, about, founder, email, tags, content, founderLinkedin}) {
+export default function Overlay({title, url, about, founder, email, tags, content, founderLinkedin, bridge}) {
 const Tags = () => {
     return (
         <div className={util.tags + " " + util.flexRow}>
@@ -80,6 +80,8 @@ return (
                         ))}
                         </p>
                     </div>
+{/*                     
+                        THIS IS FOR THE INVESTOR INFO
                     <div className = {styles.row + " " + styles.subrow}>
                         <div className = {styles.contentWrapper}>
                             <h4 className = {styles.subheader}>Latest Fundraising Round:</h4>
@@ -115,7 +117,7 @@ return (
                         </div>
 
 
-                    </div>
+                    </div> */}
 
                     <div className = {styles.contentWrapper}>
                         <h4 className = {styles.subheader}>Founders:</h4>
@@ -133,23 +135,27 @@ return (
                         </div>
                     </div>
                     
-                    <div className = {styles.contentWrapper}>
-                        <h4 className = {styles.subheader}>Reach Out:</h4>
-                        <a
-                            className={util.primaryButton + " " + util.primaryButtonContainer}
-                            href={url}
-                            target="_blank"
-                            rel="noopener noreferrer" >     
-                        <span className = {styles.requestText}>Request An Intro</span>
-                        <span className={styles.externalIcon}>↗</span>
-                        </a>
-                       
-                    </div>
+                    {bridge ? (
+                         <div className = {styles.contentWrapper}>
+                         <h4 className = {styles.subheader}>Reach Out:</h4>
+                         <a
+                             className={util.primaryButton + " " + util.primaryButtonContainer}
+                             href={bridge}
+                             target="_blank"
+                             rel="noopener noreferrer" >     
+                         <span className = {styles.requestText}>Request An Intro</span>
+                         <span className={styles.externalIcon}>↗</span>
+                         </a>
+                        
+                     </div>
+                    ) : null}
+                   
                     
                     
 
                 </div>
                 </div>
+
     
                 </DialogContent>
             </DialogPortal>
