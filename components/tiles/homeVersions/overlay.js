@@ -137,7 +137,7 @@ return (
                     
                     {bridge ? (
                          <div className = {styles.contentWrapper}>
-                         <h4 className = {styles.subheader}>Reach Out:</h4>
+                         <h4 className = {styles.subheader}>Founder(s):</h4>
                          <a
                              className={util.primaryButton + " " + util.primaryButtonContainer}
                              href={bridge}

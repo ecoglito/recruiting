@@ -1,48 +1,40 @@
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useMediaQuery } from 'react-responsive';
 import util from "../styles/util.module.css";
 import Link from "next/link";
-import Tile from "../components/tiles/homeVersions/tile";
 import CompanyListTile from "../components/tiles/homeVersions/companyListTile";
 import InvestorListTile from "../components/tiles/homeVersions/investorListTile";
 import FounderRequestTile from "../components/tiles/homeVersions/founderRequestTile";
 import styles from "../pages/index.module.css";
-import toast, { Toaster } from "react-hot-toast";
 import OnboardingCard from "../components/onboardingCard";
 import { motion, AnimatePresence } from "framer-motion";
 const { Client } = require("@notionhq/client");
-import Script from "next/script";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { GlobalStateContext } from "../GlobalState";
 
 
-export default function Home({ companyListList, portfolioListCompanies, investorListList, talentListList, portfolioListList }) {
-  //create masterlist objects with uuid and text and cta
+export default function Home({ portfolioListCompanies, investorListList, portfolioListList }) {
 
   const { data: session } = useSession();
-
-
-  function getCompanyNameFromEmail(email) {
-    let companyName = email.split("@")[1].split(".")[0];
-    return companyName = companyName.toUpperCase();
-  }
   
+
+  const { isPortfolioCompany, setIsPortfolioCompany } = useContext(GlobalStateContext);
+  
+
+  let email;
+
   function checkEmails(userEmail, portfolioListCompanies) {
     const userDomain = userEmail.split('@')[1];
     return portfolioListCompanies.some(link => {
       return userDomain === link.properties.Email.email.split('@')[1] || userDomain === 'alchemy.com';
     });
   }
-  
-  
-
-  let email;
-  let isPortfolioCompany = false;
 
   if (session) {
     email = session.user.email;
-    isPortfolioCompany = checkEmails(email, portfolioListCompanies);
+    setIsPortfolioCompany(checkEmails(email, portfolioListCompanies));
     console.log(isPortfolioCompany);
   }
  
@@ -344,7 +336,6 @@ export default function Home({ companyListList, portfolioListCompanies, investor
 
 //notion API
 export async function getStaticProps() {
-  const notion = new Client({ auth: process.env.NOTION_API_KEY });
   const alchemy_notion = new Client({ auth: process.env.ALCHEMOTION_API_KEY});
 
   const portfolioListResponse = await alchemy_notion.databases.query({
@@ -394,55 +385,8 @@ export async function getStaticProps() {
   });
 
 
-
-
-  const companyListResponse = await notion.databases.query({
-    database_id: process.env.NOTION_COMPANYLIST_ID,
-    filter: {
-      and: [
-        {
-          property: "Display",
-          checkbox: {
-            equals: true,
-          },
-        },
-      ],
-    },
-    sorts: [
-      {
-        property: "Created",
-        direction: "descending",
-      },
-    ],
-    page_size: 8,
-  });
-
-
-  const talentListResponse = await notion.databases.query({
-    database_id: process.env.NOTION_TALENTLIST_ID,
-    filter: {
-      and: [
-        {
-          property: "Display",
-          checkbox: {
-            equals: true,
-          },
-        },
-      ],
-    },
-    sorts: [
-      {
-        property: "Created",
-        direction: "descending",
-      },
-    ],
-  });
- 
-
   return {
     props: {
-      companyListList: companyListResponse.results,
-      talentListList: talentListResponse.results,
       portfolioListList: portfolioListResponse.results,
       portfolioListCompanies: portfolioListCompanies.results,
       investorListList: investorListResponse.results,

@@ -181,15 +181,15 @@ export default function CompanyListTile({ title, url, about, founder, founderLin
                     </div>
                     
                     {bridge ? (
-                         <div className = {styles.contentWrapper}>
-                         <h4 className = {styles.subheader}>Reach Out:</h4>
+                         <div className = {overlay.contentWrapper}>
+                         <h4 className = {overlay.subheader}>Reach Out:</h4>
                          <a
                              className={util.primaryButton + " " + util.primaryButtonContainer}
                              href={bridge}
                              target="_blank"
                              rel="noopener noreferrer" >     
-                         <span className = {styles.requestText}>Request An Intro</span>
-                         <span className={styles.externalIcon}>↗</span>
+                         <span className = {overlay.requestText}>Request An Intro</span>
+                         <span className={overlay.externalIcon}>↗</span>
                          </a>
                         
                      </div>

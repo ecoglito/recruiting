@@ -51,6 +51,7 @@ export default function FounderRequestTile( {portfolioList, title, logo, type}) 
       }
       
       if ( session ) {
+        console.log(portfolioList);
         email = session.user.email;
         const companyName = getCompanyNameFromEmail(email);
        

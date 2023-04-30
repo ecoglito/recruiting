@@ -6,28 +6,30 @@ import toast, { Toaster } from "react-hot-toast";
 import React, { useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SessionProvider } from "next-auth/react";
+import { GlobalStateProvider } from "../GlobalState";
 
-export default function MyApp({ Component, pageProps, session }) {
+export default function MyApp({ Component, pageProps, session, list}) {
   return (
-    <ThemeProvider attribute="class" value={{ dark: "dark-theme" }}>
-      <Toaster
-        toastOptions={{
-          duration: 1500,
-          style: {
-            padding: "3px",
-            borderRadius: "6px",
-            fontSize: "14px",
-          },
-        }}
-      />
-      <SessionProvider session = {session}>
-        <div className="base"></div>
-        <Background />
-        <Menu />
-          <Component {...pageProps} />
-        <Analytics />
-      </SessionProvider>
-      </ThemeProvider>
-    
+    <GlobalStateProvider>
+      <ThemeProvider attribute="class" value={{ dark: "dark-theme" }}>
+        <Toaster
+          toastOptions={{
+            duration: 1500,
+            style: {
+              padding: "3px",
+              borderRadius: "6px",
+              fontSize: "14px",
+            },
+          }}
+        />
+        <SessionProvider session = {session}>
+          <div className="base"></div>
+          <Background />
+          <Menu />
+            <Component {...pageProps} />
+          <Analytics />
+        </SessionProvider>
+        </ThemeProvider>
+      </GlobalStateProvider>
   );
 }

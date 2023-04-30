@@ -6,11 +6,16 @@ import Contact from "./contact";
 import util from "../styles/util.module.css";
 import SignInModal from "./signInModal";
 import { useSession } from "next-auth/react";
+import React, {useContext} from "react";
 
 
+import { GlobalStateContext } from "../GlobalState";
 
-export default function Menu() {
+
+export default function Menu( {list} ) {
   const { data: session } = useSession();
+
+  const { isPortfolioCompany, setIsPortfolioCompany } = useContext(GlobalStateContext);
 
   function getCompanyNameFromEmail(email) {
     let companyName = email.split("@")[1].split(".")[0];
@@ -29,10 +34,13 @@ export default function Menu() {
     matchedEmail = checkEmails(session.user.email);
   }
 
+  console.log(list);
+
 
 
   return (
     <div className={styles.container}>
+      
       <div className={styles.upper}>
         <Link href="/">
           <img style = {{width: "150px"}}
@@ -45,66 +53,29 @@ export default function Menu() {
         <nav className={styles.nav}>
           <NavLink svg="recents" href="/" label="Home" shortcut="1" />
           <NavLink svg="about" href="/about" label="About" shortcut="2" />
-          <NavLink svg="users" href="/talent" label="Talent" shortcut="3" />
-          <NavLink svg="projects" href="/companies" label="Portfolio" shortcut="4" />
-          <NavLink svg="money" href="/investors" label="Investors" shortcut="5" />
+          <NavLink svg="projects" href="/companies" label="Portfolio" shortcut="3" />
+
+          {isPortfolioCompany ? (
+            <>
+              <NavLink svg="users" href="/talent" label="Talent" shortcut="4" />
+              <NavLink svg="money" href="/investors" label="Investors" shortcut="5" />
+            
+              <p className={styles.divider}>Resources</p>
+              <NavLink
+                svg="perks"
+                href="/perks"
+                label="Founder Perks"
+                shortcut="6"
+              />
+            </>
+          ) : null}
           
 
-          {/* <NavLink
-            svg="projects"
-            href="/projects"
-            label="Projects"
-            shortcut="3"
-          />
-          <NavLink
-            svg="shopping-cart"
-            href="/store"
-            label="Boutique"
-            shortcut="4"
-          />
-          <NavLink
-            svg="investments"
-            href="/investments"
-            label="Investments"
-            shortcut="5"
-          /> */}
-          <p className={styles.divider}>Resources</p>
-          <NavLink
-            svg="perks"
-            href="/perks"
-            label="Founder Perks"
-            shortcut="6"
-          />
-          <NavLink
-            svg="reading"
-            href="/reading-list"
-            label="Building web3 teams"
-            shortcut="7"
-          />
-          {/* <NavLink
-            svg="shopping-bag"
-            href="/goods"
-            label="Aesthetic Goods"
-            shortcut="7"
-          />
-           */}
-          <NavLink
-            svg="newsletters"
-            href="/newsletter"
-            label="Newsletter"
-            shortcut="8"
-          />
-          <NavLink
-            svg="podcasts"
-            href="/podcast"
-            label="Podcast"
-            shortcut="9"
-          />
           <p className={styles.divider}>Reach out</p>
           <Contact svg="chat" label="Contact" shortcut="/" />
           <NavLink
             svg="twitter"
-            href="https://twitter.com/alchemy_vc_"
+            href="https://twitter.com/alchemyplatform"
             label="Twitter"
             external="true"
           />
