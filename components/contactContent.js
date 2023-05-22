@@ -74,7 +74,7 @@ export default function ContactContent() {
           </p>
         </div>
         <a
-          href="alchemy.com"
+          href="https://calendly.com/enzoalchemy/30min?month=2023-05&date=2023-05-18"
           target="_blank"
           rel="noopener noreferrer"
           className={

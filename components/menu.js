@@ -51,21 +51,21 @@ export default function Menu( {list} ) {
         </Link>
 
         <nav className={styles.nav}>
-          <NavLink svg="recents" href="/" label="Home" shortcut="1" />
-          <NavLink svg="about" href="/about" label="About" shortcut="2" />
-          <NavLink svg="projects" href="/companies" label="Portfolio" shortcut="3" />
+          <NavLink svg="recents" href="/" label="Home" />
+          <NavLink svg="about" href="/about" label="About" />
+          <NavLink svg="projects" href="/companies" label="Portfolio"  />
 
           {isPortfolioCompany ? (
             <>
-              <NavLink svg="users" href="/talent" label="Talent" shortcut="4" />
-              <NavLink svg="money" href="/investors" label="Investors" shortcut="5" />
+              {/* <NavLink svg="users" href="/talent" label="Talent"  /> */}
+              <NavLink svg="money" href="/investors" label="Investors" />
             
               <p className={styles.divider}>Resources</p>
               <NavLink
                 svg="perks"
                 href="/perks"
                 label="Founder Perks"
-                shortcut="6"
+               
               />
             </>
           ) : null}
@@ -87,7 +87,7 @@ export default function Menu( {list} ) {
          svg="overview"
          href="/overview"
          label="Overview"
-         shortcut="8"
+        
        />
        </>
          ) : null}

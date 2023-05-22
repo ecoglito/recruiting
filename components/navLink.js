@@ -64,7 +64,7 @@ export default function NavLink({ svg, label, href, shortcut, external }) {
           </div>
           <p className={styles.label}>{label}</p>
         </div>
-        {shortcut ? (
+        {/* {shortcut ? (
           <Tooltip.Provider delayDuration={500}>
             <Tooltip.Root>
               <Tooltip.Trigger asChild>
@@ -82,7 +82,7 @@ export default function NavLink({ svg, label, href, shortcut, external }) {
               </Tooltip.Content>
             </Tooltip.Root>
           </Tooltip.Provider>
-        ) : null}
+        ) : null} */}
       </a>
     </Link>
   );

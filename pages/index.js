@@ -160,8 +160,9 @@ export default function Home({ portfolioListCompanies, investorListList, portfol
              Welcome, {firstName}.
           </h1>
           <span className={styles.tinyText}>
-            A collection of the best web3 companies. {" "}
-            {isVisible && !isMobile
+            A platform for you to interact with our portfolio companies, investor network, and the Alchemy team. {" "}
+          </span>
+            {/* {isVisible && !isMobile
               ? `Below are some tips to get you started on this website.`
               : null}
             {!isVisible ? (
@@ -207,7 +208,7 @@ export default function Home({ portfolioListCompanies, investorListList, portfol
                 </AnimatePresence>
               </motion.div>
             )}
-          </AnimatePresence>
+          </AnimatePresence> */}
 
           <div className={styles.firstHomeSection}>
             <h2 className={styles.homeSectionTitle}>Companies</h2>
