@@ -28,7 +28,7 @@ export default function Home({ portfolioListCompanies, investorListList, portfol
   function checkEmails(userEmail, portfolioListCompanies) {
     const userDomain = userEmail.split('@')[1];
     return portfolioListCompanies.some(link => {
-      return userDomain === link.properties.Email.email.split('@')[1] || userDomain === 'alchemy.com';
+      return userDomain === link.properties.Email.email.split('@')[1] || userDomain === 'alchemy.com' || userEmail === "lukasikdesign@gmail.com";
     });
   }
 
